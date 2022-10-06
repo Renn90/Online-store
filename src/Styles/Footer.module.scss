@@ -1,0 +1,80 @@
+@import "./utilities";
+
+.footer {
+  @extend %largercontainer;
+  background-color: black;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 30px;
+  line-height: 1.8;
+  font-family: $primary-font;
+  color: white;
+  text-align: center;
+
+  h1 {
+    font-size: 20px;
+  }
+  p {
+    color: rgba(128, 128, 128, 0.952);
+    cursor: pointer;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  .logo {
+    line-height: 1;
+
+    p {
+      font-size: 55px;
+      color: white;
+      font-family: $secondaryfont;
+    }
+  }
+}
+
+.helpSec {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.icon {
+  width: 10px;
+  color: grey;
+  margin: 0 2px;
+}
+
+.socialMedia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0 10px 0;
+}
+.copyright {
+  font-family: $primary-font;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+
+    .logo {
+      margin: 10px;
+    }
+  }
+  .helpSec {
+    justify-content: center;
+  }
+}

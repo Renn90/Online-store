@@ -1,0 +1,7 @@
+export const REMOVE = "REMOVE"
+export const ADD = "ADD"
+export const INCREASE = "INCREASE"
+export const DECREASE = "DECREASE "
+export const GET_TOTAL = "GET_TOTAL"
+export const ADDTOWISHLIST = "ADDTOWISHLIST"
+export const REMOVEWISHLIST = "REMOVEWISHLIST"

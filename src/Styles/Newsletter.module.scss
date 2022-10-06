@@ -1,0 +1,68 @@
+@import "./utilities";
+
+.container {
+  @extend %container;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: $primary-font;
+  line-height: 1.4;
+  margin: 40px auto;
+  text-align: center;
+
+  h1 {
+    font-size: 4rem;
+    margin: 10px;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  .input {
+    display: flex;
+    border: 1px solid lightgray;
+    height: 45px;
+    width: 50%;
+    margin: 8px;
+    font-family: $primary-font;
+
+    input {
+      border: none;
+      outline: none;
+      width: 100%;
+      flex: 9;
+      padding: 0px 12px;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      background-color: #76520e;
+      color: white;
+      font-size: 20px;
+      margin: 0;
+      padding: 9px 15px;
+      flex: 1;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    h1 {
+      font-size: 3rem;
+    }
+    .input {
+      width: 80%;
+    }
+  }
+}
+@media (max-width: 300px) {
+  .container {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}

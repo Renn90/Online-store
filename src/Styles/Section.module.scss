@@ -1,0 +1,68 @@
+@import "./utilities";
+
+.container {
+  @extend %largercontainer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  width: 100%;
+  font-family: $primary-font;
+}
+.sectionItem {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 50px;
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  span {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.555);
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+
+    h1 {
+      font-size: 40px;
+      color: white;
+      text-decoration: none;
+
+      &:hover {
+        scale: 1.06;
+        color: grey;
+      }
+    }
+  }
+}
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+  .sectionItem {
+    margin: 10px;
+    width: 80%;
+  }
+}
+@media(max-width: 350px){
+  .sectionItem{
+    span{
+      h1{
+        font-size: 27px;
+      }
+    }
+  }
+}

@@ -1,0 +1,133 @@
+@import "./utilities";
+.container {
+  @extend %container;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: $primary-font;
+  margin: 150px auto;
+  padding: 20px;
+
+  .content {
+    display: flex;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+
+    .remove {
+      margin: 20px;
+    }
+
+    .left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(211, 211, 211, 0.397);
+      padding: 10px 30px;
+      border-radius: 4px;
+    }
+
+    .info {
+      margin: 20px;
+      line-height: 1.4;
+      width: 200px;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      margin: 20px;
+
+      h4 {
+        margin: 5px;
+        padding: 4px 14px;
+        border: 1px solid brown;
+        border-radius: 4px;
+      }
+
+      button {
+        padding: 4px 10px;
+        border: none;
+        border-radius: 2px;
+        outline: none;
+        font-size: 20px;
+        background-color: lightgrey;
+      }
+    }
+
+    .imgSec {
+      width: 200px;
+
+      img {
+        width: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        height: 100px;
+      }
+    }
+  }
+  .total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .homeBtn {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+
+      &:hover {
+        @extend%hoverscale;
+      }
+
+      .arrow {
+        width: 17px;
+      }
+
+      .link {
+        text-decoration: none;
+        color: black;
+      }
+    }
+  }
+}
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 150px;
+  font-family: $primary-font;
+  text-align: center;
+
+  .box {
+    width: 230px;
+    margin: 20px;
+    opacity: 0.7;
+  }
+
+  button {
+    margin: 20px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    color: white;
+    background-color: #76520e;
+    font-family: $primary-font;
+
+    &:hover {
+      scale: 1.05;
+    }
+  }
+}
+@media (max-width: 920px) {
+  .content {
+    flex-direction: column;
+    padding: 10px 20px;
+
+    .left {
+      flex-direction: column;
+    }
+  }
+}

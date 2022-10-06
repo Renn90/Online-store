@@ -1,0 +1,30 @@
+@import "./utilities";
+
+.searchContainer {
+  @extend %container;
+  display: flex;
+  align-content: center;
+  border: solid transparent 1px;
+  border-radius: 25px;
+  padding: 3px;
+  width: 50%;
+  justify-content: center;
+  background-color: lightgrey;
+  position: relative;
+  z-index: 99;
+
+  input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: transparent;
+    color: grey;
+  }
+  .icon {
+    color: white;
+    background-color: #795b23;
+    border-radius: 50%;
+    padding: 4px;
+    margin: 2px 7px 2px 2px;
+  }
+}

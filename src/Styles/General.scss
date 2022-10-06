@@ -1,0 +1,30 @@
+.slide {
+  opacity: 0;
+  transform: translateX(-30%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 23%;
+}
+
+.current {
+  opacity: 100%;
+  transform: translateX(0%);
+  transition: 1.4s;
+}
+.activeb {
+  transform: translateX(0px) !important;
+}
+.active {
+  &::after {
+    content: "";
+    background: black;
+    display: block;
+    border-radius: 5px;
+    height: 1px;
+    width: 100%;
+    margin: 2px auto;
+    transition: 0.4s;
+  }
+}

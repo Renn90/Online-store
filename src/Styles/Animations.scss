@@ -1,0 +1,56 @@
+@keyframes mymove {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 100%;
+  }
+}
+
+@keyframes slideinbuttom {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 100%;
+  }
+}
+
+@keyframes slidedown {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 100%;
+  }
+}
+
+@mixin slideinbuttom($delay) {
+  animation: slideinbuttom 1s $delay ease-in-out both;
+}
+
+.slideleft {
+  animation: mymove 1.5s ease-in-out both;
+}
+
+.slidedown {
+  animation: slidedown 1s ease-in-out both;
+}
+
+.slidein {
+  @include slideinbuttom(0.1s);
+}
+
+.slideinb {
+  @include slideinbuttom(0.7s);
+}
+
+.slideinc {
+  @include slideinbuttom(1s);
+}
