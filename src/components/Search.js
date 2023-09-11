@@ -8,7 +8,7 @@ import { sliceAction } from "../feautures/Store";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const Search = () => {
+const Search = () => { 
   
   const [input, setinput] = useState('')
 

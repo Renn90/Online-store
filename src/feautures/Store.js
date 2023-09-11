@@ -64,6 +64,8 @@ const stateReducer = createSlice({
       if(!emptyInput){
         const filteredSearch = products.filter((item) => item.title.trim().toLowerCase().includes(action.payload.trim().toLowerCase()))
         state.searchArray = filteredSearch;
+      }else{
+        state.searchArray = []
       }
       state.inputValue = action.payload
     }
