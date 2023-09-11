@@ -1,14 +1,17 @@
+import image from "./image/clothes.jpg"
+import image2 from './image/accesories.jpg'
+
 export const cartegories = [
   {
     id: 1,
     title: "Clothes",
-    img: "./assets/clothes.webp",
+    img: image,
   },
 
   {
     id: 2,
     title: "Accessories",
-    img: "./assets/accesories.webp",
+    img: image2,
   },
 ];
 
