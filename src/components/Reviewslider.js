@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import style from "../Styles/Reviewslider.module.scss";
@@ -16,20 +16,26 @@ const Reviewslider = () => {
   let slideInterval = "";
   let intervalTime = 5000;
 
+  // function auto() {
+  //   slideInterval = setInterval(nextslide, intervalTime);
+  // }
+
+  const auto = useCallback(() => {
+    slideInterval = setInterval(nextslide, intervalTime);
+  }, [slideInterval]);
+  
+
   useEffect(() => {
     setCurrentSlide(0);
   }, []);
 
   useEffect(() => {
-    const auto =()=> {
-      slideInterval = setInterval(nextslide, intervalTime);
-    }
-  
+
     if (autoScroll) {
       auto();
     }
     return () => clearInterval(slideInterval);
-  }, [currentSlide, autoScroll, slideInterval ]);
+  }, [currentSlide, autoScroll, slideInterval, auto ]);
 
   const nextslide = () => {
     setCurrentSlide(currentSlide === slidelenght - 1 ? 0 : currentSlide + 1);
