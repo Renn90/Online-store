@@ -3,7 +3,7 @@ import "../Styles/Animations.scss";
 import style from "../Styles/Search.module.scss";
 import SearchIcon from "@mui/icons-material/Search";
 import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { sliceAction } from "../feautures/Store";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";

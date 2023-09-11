@@ -1,6 +1,6 @@
 import React from 'react'
 import style from '../Styles/Alert.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { CheckBoxRounded } from '@mui/icons-material'
 
 const Alert = () => {

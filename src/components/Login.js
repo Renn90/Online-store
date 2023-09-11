@@ -11,8 +11,8 @@ const Login = () => {
           <input placeholder="Password" />
         </form>
         <button>LOGIN</button>
-        <a href='#'>Do not remember your password</a>
-        <a href='#'>Create new account</a>
+        <p>Do not remember your password</p>
+        <p>Create new account</p>
       </div>
     </div>
   );

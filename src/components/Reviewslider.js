@@ -29,7 +29,7 @@ const Reviewslider = () => {
       auto();
     }
     return () => clearInterval(slideInterval);
-  }, [currentSlide]);
+  }, [currentSlide, autoScroll, slideInterval]);
 
   const nextslide = () => {
     setCurrentSlide(currentSlide === slidelenght - 1 ? 0 : currentSlide + 1);
