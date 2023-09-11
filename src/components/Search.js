@@ -15,7 +15,6 @@ const Search = () => {
   const inputref = useRef("");
   const dispatch = useDispatch()
   const navigate = useNavigate();
-  const inputValue = useSelector((state)=> state.inputValue)
 
   const filterHandler =()=> {
     setinput(inputref.current.value)

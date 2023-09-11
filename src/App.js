@@ -1,8 +1,7 @@
 import "./App.css";
 import Homepage from "./pages/Homepage";
-import React, { useState } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import Search from "./components/Search";
 import NavBar from "./components/NavBar";
 import { Suspense } from "react";

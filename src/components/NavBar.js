@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "../Styles/Navbar.module.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge } from "@material-ui/core";
 import "../Styles/Navbar.module.scss";
 import { NavLink } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "../Styles/Animations.scss";
 
 const NavBar = () => {
