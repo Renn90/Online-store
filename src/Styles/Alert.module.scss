@@ -1,0 +1,23 @@
+@import "./utilities";
+
+.mainCont{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 100%;
+    left: 5%;
+    z-index: 99;
+    align-items: center;
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 8px 4px;
+    font-family: $primary-font;
+    max-width: 250px;
+    width: 100%;
+
+    .check{
+       color: brown;
+       margin-right: 10px;
+    }
+}

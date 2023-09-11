@@ -9,6 +9,7 @@ import "../Styles/General.scss";
 
 const Reviewslider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [animation, setAnimation] = useState('')
   const slidelenght = reviews.length;
 
   const autoScroll = true;
@@ -32,10 +33,12 @@ const Reviewslider = () => {
 
   const nextslide = () => {
     setCurrentSlide(currentSlide === slidelenght - 1 ? 0 : currentSlide + 1);
+    setAnimation('slide-left')
   };
 
   const prevslide = () => {
     setCurrentSlide(currentSlide === 0 ? slidelenght - 1 : currentSlide - 1);
+    setAnimation('slide-right')
   };
 
   return (
@@ -46,7 +49,7 @@ const Reviewslider = () => {
           return (
             <div className={style.opp} key={item.id}>
               <div
-                className={index === currentSlide ? "slide current" : "slide"}
+                className={`slide ${index === currentSlide && animation}`}
                 key={item.id}
               >
                 {index === currentSlide && (

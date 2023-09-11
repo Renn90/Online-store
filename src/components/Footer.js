@@ -20,8 +20,6 @@ const Footer = () => {
         </div>
         <div>
           <p>Home</p>
-          <p>Men</p>
-          <p>Women</p>
           <Link to="accessories" style={{ textDecoration: "none" }}>
             <p>Accessories</p>
           </Link>
@@ -30,7 +28,6 @@ const Footer = () => {
           <Link to="cart" style={{ textDecoration: "none" }}>
             <p>Cart</p>
           </Link>
-          <p>Order Tracking </p>
           <Link to="wishlist" style={{ textDecoration: "none" }}>
             <p>Wishlist</p>
           </Link>

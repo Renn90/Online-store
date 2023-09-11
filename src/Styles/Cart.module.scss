@@ -7,7 +7,11 @@
   font-family: $primary-font;
   margin: 150px auto;
   padding: 20px;
-
+  
+ .text{
+  text-align: center;
+ }
+   
   .content {
     display: flex;
     margin: 20px;
@@ -15,7 +19,13 @@
     align-items: center;
 
     .remove {
-      margin: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 5px;
+      background-color: lightgray;
+      padding: 10px;
+      border-radius: 50%;
     }
 
     .left {
@@ -123,7 +133,7 @@
 }
 @media (max-width: 920px) {
   .content {
-    flex-direction: column;
+
     padding: 10px 20px;
 
     .left {

@@ -2,19 +2,29 @@ import React from "react";
 import style from "../Styles/Cart.module.scss";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import { Link } from "react-router-dom";
-import { connect, useDispatch } from "react-redux";
-import { GET_TOTAL, REMOVE } from "../feautures/Action";
-import { INCREASE } from "../feautures/Action";
-import { DECREASE } from "../feautures/Action";
 import ClearIcon from "@mui/icons-material/Clear";
+import { useSelector } from "react-redux";
+import { sliceAction } from "../feautures/Store";
+import { useDispatch } from "react-redux";
 
-const Cart = ({ cart, total }) => {
-  React.useEffect(() => {
-    dispatch({ type: GET_TOTAL });
-  });
+const Cart = () => {
 
-  const dispatch = useDispatch();
+  const cart = useSelector((state)=> state.cart)
+  const total = useSelector((state)=> state.total)
+  const dispatch = useDispatch()
+  
+  const removeHandlder=(e)=> {
+    dispatch(sliceAction.remove(e))
+  }
 
+  const increaseHandler =(e)=> {
+    dispatch(sliceAction.increase(e))
+  }
+
+  const decreaseHandler =(e)=> {
+    dispatch(sliceAction.decrease(e))
+  }
+ 
   if (cart.length <= 0) {
     return (
       <div className={style.empty}>
@@ -24,13 +34,12 @@ const Cart = ({ cart, total }) => {
           <button>View&nbsp;Products</button>
         </Link>
       </div>
-    );
+    ); 
   }
 
   return (
     <div className={style.container}>
-      <h2>Your Shopping Cart</h2>
-
+      <h2 className={style.text}>Your Shopping Cart</h2>
       {cart.map(({ title, price, id, images, amount }) => (
         <div className={style.content} key={id}>
           <div className={style.left}>
@@ -52,17 +61,13 @@ const Cart = ({ cart, total }) => {
 
             <div className={style.quantity}>
               <button
-                onClick={() =>
-                  dispatch({ type: INCREASE, payload: { id, amount } })
-                }
+                onClick={()=>increaseHandler({id, amount, price})}
               >
                 +
               </button>
               <h4>{amount}</h4>
               <button
-                onClick={() =>
-                  dispatch({ type: DECREASE, payload: { id, amount } })
-                }
+                 onClick={()=>decreaseHandler({id, amount, price})}
               >
                 -
               </button>
@@ -74,7 +79,7 @@ const Cart = ({ cart, total }) => {
           </div>
           <div
             className={style.remove}
-            onClick={() => dispatch({ type: REMOVE, payload: { id } })}
+            onClick={()=>removeHandlder({id, amount, price})}
           >
             <ClearIcon />
           </div>
@@ -93,8 +98,4 @@ const Cart = ({ cart, total }) => {
   );
 };
 
-const mapStateToProps = (store) => {
-  return { cart: store.cart, total: store.total };
-};
-
-export default connect(mapStateToProps)(Cart);
+export default Cart;

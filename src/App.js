@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import Search from "./components/Search";
 import NavBar from "./components/NavBar";
 import { Suspense } from "react";
-const ProductItem = React.lazy(() => import("./components/ProductItem"));
+import Alert from "./UI/Alert";
+import Product from "./components/Product";
 const Error = React.lazy(() => import( "./components/Error"));
 const SingleProducts = React.lazy(() => import("./components/SingleProducts"));
 const Whistlist = React.lazy(() => import( "./components/Whistlist"));
@@ -19,33 +20,23 @@ const ResultPage = React.lazy(() => import("./components/ResultPage"));
 
 
 function App() {
-  const navigate = useNavigate();
-
-  const [filteredData, setFilteredData] = useState("");
-  const filter = () => {
-    navigate("/results");
-  };
-
   return (
     <div className="App">
       <div className="nav">
         <NavBar />
-        <Search filter={filter} setFilteredData={setFilteredData} />
+        <Search />
+        <Alert />
       </div>
       <Routes>
         <Route
           path="/"
           element={
-            <Homepage
-              filter={filter}
-              filteredData={filteredData}
-              setFilteredData={setFilteredData}
-            />
+            <Homepage />
           }
         />
         <Route
           path="products"
-          element={ <Suspense fallback={<div>...</div>}><ProductItem filteredData={filteredData} /></Suspense>}
+          element={ <Suspense fallback={<div>...</div>}><Product /></Suspense>}
         />
         <Route path="products/:productId" element={<Suspense fallback={<div>...</div>}><SingleProducts /></Suspense>} />
         <Route path="wishlist" element={<Suspense fallback={<div>...</div>}><Whistlist /></Suspense>} />
@@ -53,7 +44,7 @@ function App() {
         <Route path="accessories" element={<Suspense fallback={<div>...</div>}><Acessories /></Suspense>} />
         <Route
           path="results"
-          element={<Suspense fallback={<div>...</div>}><ResultPage filteredData={filteredData} /></Suspense>}
+          element={<Suspense fallback={<div>...</div>}><ResultPage /></Suspense>}
         />
         <Route path="login" element={<Suspense fallback={<div>...</div>}><Login /></Suspense>} />
         <Route path="cart" element={<Suspense fallback={<div>...</div>}><Cart /></Suspense>} />

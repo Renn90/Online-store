@@ -1,25 +1,61 @@
 import React from "react";
 import products from "../data2";
-import { useDispatch } from "react-redux";
-import { ADD } from "../feautures/Action";
-import { ADDTOWISHLIST } from "../feautures/Action";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import style from "../Styles/SingleProducts.module.scss";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
+import { sliceAction } from "../feautures/Store";
 
 const SingleProducts = () => {
   const dispatch = useDispatch();
 
   const { productId } = useParams();
+  const wishList = useSelector((state)=> state.wishlist)
+  const cart = useSelector((state)=> state.cart)
   const product = products.find((productg) => productg.id === productId);
+  
+  let timeoutId = null
 
+  const addHandler =(e)=> {
+    dispatch(sliceAction.addToCart(e))
+    // Clear any pending timeouts
+    clearTimeout(timeoutId);
+
+    dispatch(sliceAction.setAlert({show:true, message: 'Added To Cart'}))
+    timeoutId =  setTimeout(() => {
+      dispatch(sliceAction.setAlert({show:false}))
+    }, 800);
+  }
+
+  const removeFromWishlist =(e)=> {
+    dispatch(sliceAction.removeFromWishlist(e))
+     // Clear any pending timeouts
+     clearTimeout(timeoutId);
+
+    dispatch(sliceAction.setAlert({show:true, message: 'Item Removed'}))
+    timeoutId = setTimeout(() => {
+      dispatch(sliceAction.setAlert({show:false}))
+    }, 800);
+  }
+  
+  const addToWishlist =(e)=> {
+    dispatch(sliceAction.addToWishlist(e))
+     // Clear any pending timeouts
+     clearTimeout(timeoutId);
+
+    dispatch(sliceAction.setAlert({show:true, message: 'Added To Wishlist'}))
+    timeoutId = setTimeout(() => {
+      dispatch(sliceAction.setAlert({show:false}))
+    }, 800);
+  }
+   
   if (!product) {
     return "No matching product found.";
   }
-
+  
   const {
     title,
     description,
@@ -53,19 +89,17 @@ const SingleProducts = () => {
 
         <div className={style.btns}>
           <span>
-            <button onClick={() => dispatch({ type: ADD, payload: product })}>
+            <button onClick={()=> addHandler(product)}>
               Add To Cart
             </button>
             <AddShoppingCartIcon className={style.icon} />
           </span>
-          <span className={style.heart}>
-            {console.log("working")}
+          {cart.find((item)=> item.id === product.id) ? null : 
+          <span className={wishList.find((item)=> item.id === product.id) ? style.activeHeart : style.heart}>
             <FavoriteRoundedIcon
-              onClick={() =>
-                dispatch({ type: ADDTOWISHLIST, payload: product })
-              }
+              onClick= {wishList.find((item)=> item.id === product.id) ? ()=>removeFromWishlist(product) : ()=>addToWishlist(product)}
             />
-          </span>
+          </span> }
         </div>
         <span className={style.homeBtn}>
           <ArrowBackIosNewRoundedIcon className={style.arrow} />

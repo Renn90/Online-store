@@ -1,13 +1,31 @@
 import React from "react";
 import { connect, useDispatch } from "react-redux";
-import { ADD, REMOVEWISHLIST } from "../feautures/Action";
 import { Link } from "react-router-dom";
 import style from "../Styles/ProductItem.module.scss";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { sliceAction } from "../feautures/Store";
 
 const Whistlist = ({ wishlist }) => {
   const dispatch = useDispatch();
+
+  let timeoutId = null
+  
+  const addHandler =(e)=> {
+    dispatch(sliceAction.addToCart(e))
+    // Clear any pending timeouts
+    clearTimeout(timeoutId);
+
+    dispatch(sliceAction.setAlert({show:true, message: 'Added To Cart'}))
+    timeoutId =  setTimeout(() => {
+      dispatch(sliceAction.setAlert({show:false}))
+    }, 800);
+  }
+
+
+  const removeHandler =(e)=> {
+    dispatch(sliceAction.removeFromWishlist(e))
+  }
 
   if (wishlist.length <= 0) {
     return (
@@ -43,9 +61,7 @@ const Whistlist = ({ wishlist }) => {
 
               <div
                 className={style.removewishlist}
-                onClick={() =>
-                  dispatch({ type: REMOVEWISHLIST, payload: item })
-                }
+                onClick={() => removeHandler(item)}
               >
                 <HighlightOffIcon className={style.removeBtn} />
               </div>
@@ -57,11 +73,11 @@ const Whistlist = ({ wishlist }) => {
 
             <div
               className={style.SpCart}
-              onClick={() => dispatch({ type: ADD, payload: item })}
+              onClick={() => addHandler(item)}
             >
-              <button>ADD TO CART</button>
+              <button style={{cursor: 'pointer'}}>ADD TO CART</button>
               <AddShoppingCartIcon
-                style={{ fontSize: "23px", color: "white", marginRight: "9px" }}
+                style={{ fontSize: "23px", color: "white", marginRight: "9px", }}
               />
             </div>
 

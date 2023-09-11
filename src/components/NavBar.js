@@ -4,10 +4,10 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge } from "@material-ui/core";
 import "../Styles/Navbar.module.scss";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import "../Styles/Animations.scss";
 
-const NavBar = ({ wishlist, amount }) => {
+const NavBar = () => {
   const [showmenu, setshowmenu] = useState(false);
 
   const togglelist = () => {
@@ -16,9 +16,8 @@ const NavBar = ({ wishlist, amount }) => {
 
   const toggle = showmenu ? "activeb" : "";
 
-  useEffect(()=>{
-    console.log(amount)
-  })
+  const cart = useSelector((state)=> state.cart)
+  const wishlist = useSelector((state)=> state.wishlist)
 
   return (
     <div className={`${style.container} slidedown`}>
@@ -43,10 +42,8 @@ const NavBar = ({ wishlist, amount }) => {
         </NavLink>
         <NavLink to="/wishlist" onClick={togglelist}>
           <div className={style.wishlist}>
-            <>Whishlist</>
-            {wishlist.length > 0 && (
-              <div className={style.wishlistLength} />
-            )}{" "}
+            <>Wishlist</>
+              <div className={wishlist.length > 0 ? style.wishlistLength : null} />
             <></>
           </div>
         </NavLink>
@@ -54,7 +51,7 @@ const NavBar = ({ wishlist, amount }) => {
 
       <div className={style.cartSec}>
         <NavLink to="/login">Log&nbsp;In</NavLink>
-        <Badge badgeContent={amount} color="secondary" overlap="rectangular">
+        <Badge badgeContent={cart.length} color="secondary" overlap="rectangular">
           <NavLink to="cart">
             <ShoppingCartIcon className="cart" />
           </NavLink>
@@ -69,13 +66,4 @@ const NavBar = ({ wishlist, amount }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    cart: state.cart,
-    wishlist: state.wishlist,
-    cartamount: state.cartamount,
-    amount: state.amount,
-  };
-};
-
-export default connect(mapStateToProps)(NavBar);
+export default NavBar;
