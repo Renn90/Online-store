@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState,useCallback  } from "react";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import style from "../Styles/Reviewslider.module.scss";
@@ -14,7 +14,6 @@ const Reviewslider = () => {
 
   let intervalTime = 5000
   const autoScroll = true;
-  const [slideInterval, setSlideInterval] = useRef();
 
 
 
@@ -22,22 +21,20 @@ const Reviewslider = () => {
     setCurrentSlide(0);
   }, []);
 
-  useEffect(() => {
-    if (autoScroll) {
-      if (slideInterval === undefined) {
-        setSlideInterval(setInterval(intervalTime));
-      }
-    } else {
-      clearInterval(slideInterval);
-      setSlideInterval(undefined);
-    }
-    return () => clearInterval(slideInterval);
-  }, [currentSlide,autoScroll, intervalTime, setSlideInterval, slideInterval]);
 
-  const nextslide = () => {
+  const nextslide = useCallback(() => {
     setCurrentSlide(currentSlide === slidelenght - 1 ? 0 : currentSlide + 1);
     setAnimation('slide-left')
-  };
+  }, [currentSlide,slidelenght]);
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      nextslide()
+    }, intervalTime);
+    return () => clearInterval();
+  }, [currentSlide, autoScroll, intervalTime, nextslide]);
+
 
   const prevslide = () => {
     setCurrentSlide(currentSlide === 0 ? slidelenght - 1 : currentSlide - 1);

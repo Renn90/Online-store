@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <div
       className={style.container}
-      style={{ backgroundImage: `url('./assets/bgimg.webp')` }}
+      style={{height: '100vh', backgroundImage: `url('./assets/bgimg.webp')`, }}
     >
       <div className={style.textContent}>
         <div className={`${style.textContain} slidein`}>
