@@ -16,20 +16,20 @@ const Reviewslider = () => {
   let slideInterval = "";
   let intervalTime = 5000;
 
-  function auto() {
-    slideInterval = setInterval(nextslide, intervalTime);
-  }
-
   useEffect(() => {
     setCurrentSlide(0);
   }, []);
 
   useEffect(() => {
+    const auto =()=> {
+      slideInterval = setInterval(nextslide, intervalTime);
+    }
+  
     if (autoScroll) {
       auto();
     }
     return () => clearInterval(slideInterval);
-  }, [currentSlide, autoScroll, slideInterval,auto]);
+  }, [currentSlide, autoScroll, slideInterval ]);
 
   const nextslide = () => {
     setCurrentSlide(currentSlide === slidelenght - 1 ? 0 : currentSlide + 1);
