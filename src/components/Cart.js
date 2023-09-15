@@ -3,12 +3,13 @@ import style from "../Styles/Cart.module.scss";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import { Link } from "react-router-dom";
 import ClearIcon from "@mui/icons-material/Clear";
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useSelector } from "react-redux";
 import { sliceAction } from "../feautures/Store";
 import { useDispatch } from "react-redux";
 
 const Cart = () => {
-
+ 
   const cart = useSelector((state)=> state.cart)
   const total = useSelector((state)=> state.total)
   const dispatch = useDispatch()
@@ -93,6 +94,7 @@ const Cart = () => {
           </Link>
         </span>
         <h4>Subtotal: {total}.00 $</h4>
+        <Link to="checkout" className={style.linkOut}>Checkout <ChevronRightIcon /> </Link>
       </div>
     </div>
   );

@@ -101,6 +101,25 @@
     }
   }
 }
+@keyframes right{
+  0%{
+    transform: translateX(0px);
+  }
+  50%{
+    transform: translateX(20px);
+  }
+  100%{
+    transform: translateX(0px);
+  }
+}
+.linkOut{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  animation: right infinite 1s;
+}
 .empty {
   display: flex;
   flex-direction: column;

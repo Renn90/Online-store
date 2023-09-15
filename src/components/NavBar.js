@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "../Styles/Navbar.module.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge } from "@material-ui/core";
@@ -11,10 +11,14 @@ const NavBar = () => {
   const [showmenu, setshowmenu] = useState(false);
 
   const togglelist = () => {
+    console.log('hhhhhh')
+    console.log(showmenu)
     setshowmenu((showMenu) => !showMenu);
   };
-
-  const toggle = showmenu ? "activeb" : "";
+      
+  useEffect(()=>{
+    console.log(showmenu)
+  },[showmenu])
 
   const cart = useSelector((state)=> state.cart)
   const wishlist = useSelector((state)=> state.wishlist)
@@ -25,7 +29,7 @@ const NavBar = () => {
         <h2>Xea</h2>
       </div>
 
-      <div className={`${style.navlink} ${toggle}`}>
+      <div className={`${style.navlink} ${showmenu ? 'activeb' : ''}`}>
         <NavLink
           to="/"
           className={({ isActive }) => (isActive ? "link active" : "link")}
