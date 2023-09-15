@@ -84,7 +84,7 @@ const CheckOut = () => {
           {message && <div id="payment-message">{message}</div>}
         </form>
       ) : (
-        <div>
+        <div style={{marginTop: '190px'}}>
           <h1>Your cart total is less than 1</h1>
         </div>
       )}
