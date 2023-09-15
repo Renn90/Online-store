@@ -17,6 +17,7 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import Success from "./components/CheckOut/Success";
 
 const Error = React.lazy(() => import( "./components/Error"));
 const SingleProducts = React.lazy(() => import("./components/SingleProducts"));
@@ -79,6 +80,7 @@ function App() {
         <Route path="cart" element={<Suspense fallback={<div>...</div>}><Cart /></Suspense>} />
         <Route path="cart/checkout" element={<Suspense fallback={<div>...</div>}>{stripePromise && clientSecret && <Elements stripe={stripePromise} options={{clientSecret}}><CheckOut /></Elements>}</Suspense>}  />
         <Route path="/*" element={<Suspense fallback={<div>...</div>}><Error /></Suspense>} />
+        <Route path="/success" element={<Suspense fallback={<div>...</div>}><Success /></Suspense>} />
       </Routes>
     </div>
   );
