@@ -2,7 +2,7 @@ import React from 'react'
 
 const Success = () => {
   return (
-    <div>
+    <div style={{marginTop: '190px'}}>
       Payment succesful!!
     </div>
   )

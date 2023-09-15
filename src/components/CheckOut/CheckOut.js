@@ -22,7 +22,7 @@ const CheckOut = () => {
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret"
     );
- 
+
     if (!clientSecret) {
       return;
     }
@@ -68,15 +68,27 @@ const CheckOut = () => {
   };
 
   return (
-    <form onSubmit={purchaseHandler} id="payment-form">
-      <PaymentElement id="payment-element" />
-      <button disabled={!stripe || isLoading || !elements}>
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-        </span>
-      </button>
-      {message && <div id="payment-message">{message}</div>}
-    </form>
+    <>
+      {cartTotal >= 1 ? (
+        <form onSubmit={purchaseHandler} id="payment-form">
+          <PaymentElement id="payment-element" />
+          <button disabled={!stripe || isLoading || !elements}>
+            <span id="button-text">
+              {isLoading ? (
+                <div className="spinner" id="spinner"></div>
+              ) : (
+                "Pay now"
+              )}
+            </span>
+          </button>
+          {message && <div id="payment-message">{message}</div>}
+        </form>
+      ) : (
+        <div>
+          <h1>Your cart total is less than 1</h1>
+        </div>
+      )}
+    </>
   );
 };
 
