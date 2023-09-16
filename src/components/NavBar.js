@@ -11,13 +11,10 @@ const NavBar = () => {
   const [showmenu, setshowmenu] = useState(false);
 
   const togglelist = () => {
-    console.log('hhhhhh')
-    console.log(showmenu)
     setshowmenu((showMenu) => !showMenu);
   };
       
   useEffect(()=>{
-    console.log(showmenu)
   },[showmenu])
 
   const cart = useSelector((state)=> state.cart)

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import style from '../../Styles/CheckOut.module.scss'
 import { useSelector } from "react-redux";
 import {
   useStripe,
@@ -13,8 +14,8 @@ const CheckOut = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const cartTotal = useSelector((state) => state.total);
-
+  const cart = useSelector((state)=> state.cart)
+  const total = useSelector((state)=> state.total)
   useEffect(() => {
     if (!stripe) {
       return;
@@ -57,7 +58,6 @@ const CheckOut = () => {
         return_url: "http://localhost:3000/success",
       },
     });
-
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
     } else {
@@ -68,11 +68,28 @@ const CheckOut = () => {
   };
 
   return (
-    <>
-      {cartTotal >= 1 ? (
+    <div className={style.container}>
+      <div className={style.card}>
+        <h4 style={{color: '#795b23'}}>Summary</h4>
+        <p>The total cost consist of the tax, insurance and shipping fee</p>
+        <hr />
+       {cart.map((item)=>(
+        <div className={style.items} key={item.id}>
+          <p>{item.title} x {item.amount}</p>
+          <h6>{item.price}</h6>
+          </div>
+       ))}
+       <span className={style.shipping}>
+         <p>shipping</p>
+         <h6><s>$2</s></h6>
+       </span>
+       <hr />
+       <h4 className={style.total}>${total}</h4>
+      </div>
+      {cart.length >= 1 ? (
         <form onSubmit={purchaseHandler} id="payment-form">
           <PaymentElement id="payment-element" />
-          <button disabled={!stripe || isLoading || !elements}>
+          <button disabled={!stripe || isLoading || !elements} className="Cbutton">
             <span id="button-text">
               {isLoading ? (
                 <div className="spinner" id="spinner"></div>
@@ -88,7 +105,7 @@ const CheckOut = () => {
           <h1>Your cart total is less than 1</h1>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

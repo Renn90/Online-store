@@ -10,6 +10,7 @@ const initialStore = {
   showAlert: false,
   searchArray: [],
   inputValue: '',
+  success: false,
 };
 
 const stateReducer = createSlice({
@@ -68,6 +69,9 @@ const stateReducer = createSlice({
         state.searchArray = []
       }
       state.inputValue = action.payload
+    },
+    setSuccess(state, action){
+      state.success = action.payload.state
     }
   }
 })

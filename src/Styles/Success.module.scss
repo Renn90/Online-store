@@ -1,0 +1,36 @@
+@import "./utilities";
+
+.container {
+  @extend %largercontainer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    font-family: $primary-font;
+    line-height: 40px;
+     
+    .confetti{
+        width: 100%;
+        position: absolute;
+        z-index: 9;
+        opacity: 70%;
+    }
+    .image{
+        width: 60%;
+        max-width: 200px;
+    }
+    a{
+        background-color: #76520e;
+        font-size: 1rem;
+        font-family: $primary-font;
+        text-decoration: none;
+        text-align: center;
+        padding: 2px 15px;
+        width: 100%;
+        max-width: 200px;
+        margin: 15px;
+        position: relative;
+        z-index: 9;
+    }
+}
